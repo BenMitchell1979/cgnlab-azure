@@ -4,7 +4,7 @@
     "parameters": {
         "virtualNetworkName": {
             "type": "string",
-            "defaultValue": "vnet-test",
+            "defaultValue": "vnet-cgnlabs",
             "metadata": {
                 "description": "name of the new vnet."
             }
@@ -15,85 +15,51 @@
             "metadata": {
                 "description": "vnet CIDR Range 0.0.0.0/0"
             }
-        },
-        "saName": {
-            "type": "string",
-            "defaultValue": "sa1test1standard",
-            "metadata": {
-                "description": "Storage Account Name."
-            }
-        },
-        "saType": {
-            "type": "string",
-            "defaultValue": "Standard_LRS",
-            "allowedValues": [
-                "Standard_LRS",
-                "Premium_LRS",
-                "Standard_GRS",
-                "Premium_GRS"
-            ],
-            "metadata": {
-                "description": "Storage Account Type."
-            }
         }
     },
 
     "variables": {
-        "storageAccountName": "[parameters('saName')]",
         "addressPrefix": "[parameters('addressPrefix')]",
-        "storageAccountType": "[parameters('saType')]",
         "virtualNetworkName": "[parameters('virtualNetworkName')]",
-        "subnet1Name": "Frontend",
+        "subnet1Name": "GatewaySubnet",
         "subnet1Prefix": "10.0.1.0/24",
-        "subnet2Name": "Web",
+        "subnet2Name": "PublicSubnet",
         "subnet2Prefix": "10.0.2.0/24",
-        "subnet3Name": "Web2",
+        "subnet3Name": "PrivateSubnet",
         "subnet3Prefix": "10.0.3.0/24"
     },
 
     "resources": [{
-            "type": "Microsoft.Storage/storageAccounts",
-            "name": "[variables('storageAccountName')]",
-            "apiVersion": "2016-01-01",
-            "location": "[resourceGroup().location]",
-            "sku": {
-                "name": "[variables('storageAccountType')]"
-            },
-            "kind": "Storage",
-            "properties": {}
-        },
-        {
-            "type": "Microsoft.Network/virtualNetworks",
-            "apiVersion": "2016-09-01",
-            "location": "[resourceGroup().location]",
-            "name": "[variables('virtualNetworkName')]",
-            "properties": {
-                "addressSpace": {
-                    "addressPrefixes": [
-                        "[variables('addressPrefix')]"
-                    ]
-                },
-                "subnets": [{
-                        "name": "[variables('subnet1Name')]",
-                        "properties": {
-                            "addressPrefix": "[variables('subnet1Prefix')]"
-                        }
-                    },
-                    {
-                        "name": "[variables('subnet2Name')]",
-                        "properties": {
-                            "addressPrefix": "[variables('subnet2Prefix')]"
-                        }
-                    },
-                    {
-                        "name": "[variables('subnet3Name')]",
-                        "properties": {
-                            "addressPrefix": "[variables('subnet3Prefix')]"
-                        }
-                    }
+        "type": "Microsoft.Network/virtualNetworks",
+        "apiVersion": "2015-06-15",
+        "location": "[resourceGroup().location]",
+        "name": "[variables('virtualNetworkName')]",
+        "properties": {
+            "addressSpace": {
+                "addressPrefixes": [
+                    "[variables('addressPrefix')]"
                 ]
-            }
+            },
+            "subnets": [{
+                    "name": "[variables('subnet1Name')]",
+                    "properties": {
+                        "addressPrefix": "[variables('subnet1Prefix')]"
+                    }
+                },
+                {
+                    "name": "[variables('subnet2Name')]",
+                    "properties": {
+                        "addressPrefix": "[variables('subnet2Prefix')]"
+                    }
+                },
+                {
+                    "name": "[variables('subnet3Name')]",
+                    "properties": {
+                        "addressPrefix": "[variables('subnet3Prefix')]"
+                    }
+                }
+            ]
         }
-    ],
+    }],
     "outputs": {}
 }
