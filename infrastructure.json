@@ -11,9 +11,9 @@
         },
         "addressPrefix": {
             "type": "string",
-            "defaultValue": "10.0.0.0/16",
+            "defaultValue": "192.168.0.0/16",
             "metadata": {
-                "description": "vnet CIDR Range 0.0.0.0/0"
+                "description": "vnet CIDR Range 192.168.0.0/16"
             }
         }
     },
@@ -22,11 +22,11 @@
         "addressPrefix": "[parameters('addressPrefix')]",
         "virtualNetworkName": "[parameters('virtualNetworkName')]",
         "subnet1Name": "GatewaySubnet",
-        "subnet1Prefix": "10.0.1.0/24",
+        "subnet1Prefix": "192.168.202.0/24",
         "subnet2Name": "PublicSubnet",
-        "subnet2Prefix": "10.0.2.0/24",
+        "subnet2Prefix": "192.168.203.0/24",
         "subnet3Name": "PrivateSubnet",
-        "subnet3Prefix": "10.0.3.0/24"
+        "subnet3Prefix": "192.168.204.0/24"
     },
 
     "resources": [{

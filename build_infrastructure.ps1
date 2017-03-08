@@ -5,5 +5,5 @@ $TempUri = "https://raw.githubusercontent.com/BenMitchell1979/cgnlab-azure/maste
 #Validate if RG exists and if not build it
 New-AzureRmResourceGroup -Name "$resourceGroup" -Location 'eastus2' -force
 
-New-AzureRmResourceGroupDeployment -Name 'cgnlabs-infrastructure' -ResourceGroupName "$resourceGroup" -TemplateUri $TempUri
+New-AzureRmResourceGroupDeployment -Name 'cgnlabs_v1' -ResourceGroupName "$resourceGroup" -TemplateUri $TempUri
 
