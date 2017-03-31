@@ -6,13 +6,13 @@
             "value": "cgnadmin"
         },
         "adminPassword": {
-            "value": "GEN-PASSWORD"
+            "value": "P@55word!"
         },
         "customData": {
             "value": "echo customData"
         },
         "dnsLabelPrefix": {
-            "value": "GEN-UNIQUE"
+            "value": "azurecgnlab1"
         },
         "vmSize": {
             "value": "Standard_D2"
